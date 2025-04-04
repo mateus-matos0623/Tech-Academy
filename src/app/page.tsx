@@ -1,103 +1,348 @@
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Award, Brain, Clock, Code, Monitor, Users } from "lucide-react";
+import Link from "next/link";
+import { CountUP } from "@/components/count-up";
 import Image from "next/image";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+export default function HomePage() {
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const stats = [
+    { quantity: 50000, sufix: "+", label: "Estudantes ativos" },
+    { quantity: 200, sufix: "+", label: "Instrutores experientes" },
+    { quantity: 1000, sufix: "+", label: "Horas de cursos" },
+    { quantity: 95, sufix: "%", label: "Taxa de sucesso" },
+  ];
+
+  const features = [
+    {
+      icon: Monitor,
+      title: "Aulas online ao vivo",
+      description:
+        "Sessões interativas com feedback e discussões em tempo real.",
+    },
+    {
+      icon: Clock,
+      title: "Horário flexível",
+      description:
+        "Aprenda no seu próprio ritmo com acesso 24 horas por dia, 7 dias por semana aos materiais do curso.",
+    },
+    {
+      icon: Award,
+      title: "Certificados da Indústria",
+      description:
+        "Ganhe certificações reconhecidas após a conclusão do curso.",
+    },
+    {
+      icon: Users,
+      title: "Suporte à Comunidade",
+      description: "Junte-se a uma comunidade próspera de alunos e mentores.",
+    },
+    {
+      icon: Brain,
+      title: "Projetos práticos",
+      description:
+        "Aplique seu conhecimento por meio de projetos práticos e reais.",
+    },
+    {
+      icon: Code,
+      title: "Currículo moderno",
+      description:
+        "Fique à frente com o conteúdo do curso constantemente atualizado.",
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      role: "Full Stack Developer",
+      company: "Tech Corp",
+      image:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop",
+      content:
+        "A Tech Academy transformou minha carreira. A abordagem prática e a orientação especializada me ajudaram a conseguir o emprego dos meus sonhos.",
+    },
+    {
+      name: "Michael Chen",
+      role: "UI/UX Designer",
+      company: "Design Studio",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop",
+      content:
+        "Os cursos de design aqui são excepcionais. Aprendi mais em 3 meses do que em um ano de autoestudo.",
+    },
+    {
+      name: "Emily Rodriguez",
+      role: "Data Scientist",
+      company: "AI Solutions",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&auto=format&fit=crop",
+      content:
+        "As trilhas de IA e machine learning são de ponta. Os instrutores são verdadeiros especialistas em suas áreas.",
+    },
+  ];
+
+  const featuredPrograms = [
+    {
+      title: "Desenvolvimento Web",
+      duration: "4 meses",
+      level: "Iniciante ao avançado",
+      image:
+        "/bg-css.jpg",
+      description: "Seja um desenvolvedor full-stack",
+    },
+    {
+      title: "Ciência de dados",
+      duration: "4 semanas",
+      level: "Intermediário",
+      image:
+        "/bg-python.jpg",
+      description: "Domine analise de dados com python",
+    },
+    {
+      title: "Computação em nuvem",
+      duration: "4 meses",
+      level: "Avançado",
+      image:
+        "/bg-nasa.jpg",
+      description: "Arquitetura em nuvem e práticas Devops",
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: "Como funcionam os cursos on-line da Tech Academy?",
+      answer:
+        "Nossos cursos combinam aprendizado em ritmo próprio com sessões on-line ao vivo. Você terá acesso a aulas em vídeo, tarefas interativas, projetos do mundo real e sessões de mentoria ao vivo. Todos os materiais do curso estão disponíveis 24 horas por dia, 7 dias por semana, e você pode aprender no seu próprio ritmo, seguindo o cronograma recomendado.",
+    },
+    {
+      question: "Que tipo de apoio os alunos recebem?",
+      answer:
+        "Os alunos recebem suporte abrangente, incluindo: 1) Acesso direto aos instrutores por meio de sessões ao vivo, 2) Sessões de mentoria individual, 3) Fóruns comunitários ativos, 4) Equipe de suporte técnico, 5) Orientação profissional e assistência na recolocação profissional para programas qualificados.",
+    },
+    {
+      question: "Os certificados são reconhecidos pelos empregadores?",
+      answer:
+        "Sim, nossos certificados são reconhecidos pela indústria e valorizados pelos empregadores. Fazemos parcerias com empresas de tecnologia líderes para garantir que nosso currículo atenda aos padrões da indústria. Muitos de nossos graduados garantiram posições nas principais empresas do mundo.",
+    },
+    {
+      question: "Quais são as opções de pagamento disponíveis?",
+      answer:
+        "Oferecemos opções de pagamento flexíveis, incluindo: 1) Pagamento único com desconto, 2) Parcelas mensais, 3) Acordos de participação na renda para programas selecionados, 4) Bolsas de estudo para alunos qualificados. Entre em contato com nossa equipe de admissões para obter informações detalhadas.",
+    },
+    {
+      question:
+        "Posso alternar entre diferentes cursos ou caminhos de aprendizagem?",
+      answer:
+        "Sim, você pode alternar entre cursos dentro do mesmo nível de programa. Também oferecemos pacotes de cursos e caminhos de aprendizagem que permitem que você explore diferentes tecnologias enquanto mantém uma abordagem de aprendizagem estruturada.",
+    },
+    {
+      question: "Qual é o tempo médio de conclusão dos cursos?",
+      answer:
+        "Os tempos de conclusão do curso variam dependendo do programa e da sua dedicação. A maioria dos cursos é projetada para ser concluída em 8 a 12 semanas com 10 a 15 horas de esforço semanal. No entanto, você tem acesso vitalício aos materiais do curso e pode aprender no seu próprio ritmo.",
+    },
+    {
+      question: "Vocês oferecem assistência para recolocação profissional?",
+      answer:
+        "Sim, oferecemos serviços de carreira abrangentes, incluindo revisões de currículo, preparação para entrevistas, desenvolvimento de portfólio e assistência para colocação de emprego. Nossa equipe de serviços de carreira trabalha com uma rede de parceiros de contratação para ajudar os graduados a encontrar oportunidades relevantes.",
+    },
+    {
+      question: "O que torna a Tech Academy diferente de outras plataformas?",
+      answer:
+        "A Tech Academy se destaca pela nossa combinação de: 1) Instrutores especialistas do setor, 2) Aprendizagem baseada em projetos, 3) Sessões de mentoria ao vivo, 4) Serviços de suporte de carreira, 5) Comunidade de aprendizagem ativa e 6) Currículo de ponta atualizado regularmente com as tendências do setor.",
+    },
+  ];
+
+  return (
+    <div className="space-y-16 mx-auto md:p-6 p-3 mt-20">
+      {/* Hero Section */}
+      <section>
+        <div className="relative text-center space-y-6 py-3 px-4">
+          <h1 className="text-2xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-4xl">
+            Domine o futuro da tecnologia
+          </h1>
+          <p className="mx-auto max-w-[700px] text-base md:text-xl text-muted-foreground">
+            Junte-se a mais de 50.000 alunos dominando habilidades tecnológicas
+            de ponta com cursos líderes do setor e instrutores especialistas.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Link href={'/courses'}>
+              <Button size="lg" className="text-base cursor-pointer">
+                Explorar cursos
+              </Button>
+            </Link>
+            <Button
+              size="lg"
+              variant="outline"
+              className="text-base cursor-pointer"
+            >
+              Ver programas
+            </Button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Stats Section */}
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map((stat, index) => (
+          <Card
+            key={index}
+            className="text-center border-1 hover:border-gray-300 dark:bg-zinc-900 shadow-lg"
+          >
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold text-primary">
+                <div>
+                  <CountUP end={stat.quantity} />
+                  <span>{stat.sufix}</span>
+                </div>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">{stat.label}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </section>
+
+      {/* Features Grid */}
+      <section className="space-y-10">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl font-bold">
+            Porque escolher a Tech Academy?
+          </h2>
+          <p className="text-muted-foreground max-w-[600px] mx-auto">
+            Oferecemos uma experiência de aprendizado abrangente com recursos
+            projetados para ajudar você a ter sucesso.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature, index) => (
+            <Card key={index} className="border-1 hover:border-gray-300 dark:bg-zinc-900 shadow-lg">
+              <CardHeader>
+                <feature.icon className="h-8 w-8 text-primary mb-2" />
+                <CardTitle>{feature.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">{feature.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Programs */}
+      <section className="space-y-10">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl font-bold">
+            Caminhos de aprendizagem em destaque
+          </h2>
+          <p className="text-muted-foreground mx-auto">
+            Programas estruturados projetados para levá-lo do nível iniciante ao
+            profissional.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {featuredPrograms.map((program, index) => (
+            <Card
+              key={index}
+              className="overflow-hidden border-1 hover:border-gray-300 dark:bg-zinc-900 shadow-lg"
+            >
+              <Image
+                src={program.image}
+                alt={program.title}
+                width={417}
+                height={30}
+                className="-mt-6 h-48 object-cover hover:scale-110 ease-in duration-150"
+              />
+              <CardHeader>
+                <CardTitle>{program.title}</CardTitle>
+                <CardDescription>{program.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex justify-between text-sm text-muted-foreground">
+                  <span>{program.duration}</span>
+                  <span>{program.level}</span>
+                </div>
+                <Button className="w-full cursor-pointer">Saiba mais</Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="space-y-10">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl font-bold">Cases de sucesso</h2>
+          <p className="text-muted-foreground max-w-[600px] mx-auto">
+            Leia os relatos de nossos graduados que transformaram suas carreiras
+            por meio da Tech Academy.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {testimonials.map((testimonial, index) => (
+            <Card key={index} className="border-1 hover:border-gray-300 dark:bg-zinc-900 shadow-lg">
+              <CardHeader>
+                <div className="flex justify-center">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-20 h-20 rounded-full object-cover"
+                  />
+                </div>
+                <CardTitle className="mt-4 text-center">
+                  {testimonial.name}
+                </CardTitle>
+                <CardDescription className="text-center">
+                  {testimonial.role} at {testimonial.company}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">{testimonial.content}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="space-y-10">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl font-bold">Perguntas frequentes</h2>
+          <p className="text-muted-foreground max-w-[600px] mx-auto">
+            Encontre respostas para perguntas comuns sobre nossos cursos, preços
+            e experiência de aprendizado.
+          </p>
+        </div>
+        <Card className="max-w-[900px] mx-auto dark:bg-zinc-900 shadow-md">
+          <CardContent className="pt-6">
+            <Accordion type="single" collapsible className="w-full">
+              {faqItems.map((item, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left text-base cursor-pointer">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground text-sm">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </CardContent>
+        </Card>
+      </section>
     </div>
   );
 }
