@@ -17,6 +17,8 @@ export function LoginForm() {
 
     async function handleSubmitLogin(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
+        console.log('email:', email)
+        console.log('password:', password)
     }
 
     return (

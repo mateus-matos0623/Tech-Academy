@@ -18,6 +18,9 @@ export function RegisterForm() {
 
     async function handleRegister(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
+        console.log('name:', name)
+        console.log('email:', email)
+        console.log('password:', password)
     }
 
     return (

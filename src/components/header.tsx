@@ -14,7 +14,7 @@ export function Header() {
     const pathName = usePathname()
 
     function handleChangeOpen() {
-        isOpen ? setIsOpen(false) : setIsOpen(true);
+        return isOpen ? setIsOpen(false) : setIsOpen(true);
     }
 
     const navigationItems = [

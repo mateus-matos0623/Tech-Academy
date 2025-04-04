@@ -70,7 +70,7 @@ export default function HomePage() {
       role: "Full Stack Developer",
       company: "Tech Corp",
       image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop",
+        "/bg-women.jpg",
       content:
         "A Tech Academy transformou minha carreira. A abordagem prática e a orientação especializada me ajudaram a conseguir o emprego dos meus sonhos.",
     },
@@ -79,16 +79,16 @@ export default function HomePage() {
       role: "UI/UX Designer",
       company: "Design Studio",
       image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop",
+        "/bg-men.jpg",
       content:
         "Os cursos de design aqui são excepcionais. Aprendi mais em 3 meses do que em um ano de autoestudo.",
     },
     {
-      name: "Emily Rodriguez",
+      name: "Juan Rodriguez",
       role: "Data Scientist",
       company: "AI Solutions",
       image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&auto=format&fit=crop",
+        "/bg-men2.jpg",
       content:
         "As trilhas de IA e machine learning são de ponta. Os instrutores são verdadeiros especialistas em suas áreas.",
     },
@@ -296,10 +296,12 @@ export default function HomePage() {
             <Card key={index} className="border-1 hover:border-gray-300 dark:bg-zinc-900 shadow-lg">
               <CardHeader>
                 <div className="flex justify-center">
-                  <img
+                  <Image
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="w-20 h-20 rounded-full object-cover"
+                    width={150}
+                    height={150}
+                    className="h-20 w-20 rounded-full object-cover"
                   />
                 </div>
                 <CardTitle className="mt-4 text-center">
