@@ -1,6 +1,6 @@
 import { registerSchema } from "@/schemas/account/register"
 
-export async function registerAction(previousState: any, formData: FormData) {
+export async function registerAction(previousState: object, formData: FormData) {
     const fields = Object.fromEntries(formData)
 
     const { success, error } = registerSchema.safeParse(fields)
@@ -13,5 +13,5 @@ export async function registerAction(previousState: any, formData: FormData) {
         }
     }
 
-    return { message: 'Cadastro feito com sucesso' }
+    return { name: fields.name, email: fields.email, password: fields.password }
 }

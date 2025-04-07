@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { LoaderCircle } from "lucide-react";
-import { FormEvent, useActionState, useState } from "react";
+import { useActionState } from "react";
 
 export function RegisterForm() {
 

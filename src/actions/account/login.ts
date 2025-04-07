@@ -2,7 +2,7 @@
 
 import { loginSchema } from "@/schemas/account/login"
 
-export async function loginAction(previousState: any, formData: FormData) {
+export async function loginAction(previousState: object, formData: FormData) {
     const email = formData.get('email')
     const password = formData.get('password')
 
@@ -15,6 +15,6 @@ export async function loginAction(previousState: any, formData: FormData) {
         };
     }
 
-    return { message: 'Login realizado com sucesso' };
+    return { email, password }
 
 }
