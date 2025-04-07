@@ -1,5 +1,6 @@
 'use client'
 
+import { registerAction } from "@/actions/account/register";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -9,28 +10,28 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { FormEvent, useState } from "react";
+import { LoaderCircle } from "lucide-react";
+import { FormEvent, useActionState, useState } from "react";
 
 export function RegisterForm() {
-    const [name, setName] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
 
-    async function handleRegister(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        console.log('name:', name)
-        console.log('email:', email)
-        console.log('password:', password)
+    const initialState = {
+        message: '',
+        name: '',
+        email: '',
+        password: ''
     }
 
+    const [state, action, isLoading] = useActionState(registerAction, initialState)
+
     return (
-        <Card className="w-full max-w-md">
+        <Card>
             <CardHeader>
                 <CardTitle>Faça seu cadastro na plataforma</CardTitle>
                 <CardDescription>Insira suas informações</CardDescription>
             </CardHeader>
             <CardContent>
-                <form className="space-y-6" onSubmit={handleRegister}>
+                <form className="space-y-6" action={action}>
                     <div className="flex flex-col gap-2">
                         <label className="text-sm font-medium w-10" htmlFor="name">
                             Nome
@@ -38,9 +39,13 @@ export function RegisterForm() {
                         <Input
                             id="name"
                             type="text"
+                            name="name"
                             placeholder="Digite seu nome completo"
-                            onChange={(e) => setName(e.target.value)}
+                            defaultValue={state?.name?.toString()}
                         />
+                        {state.error?.name && (
+                            <p className="text-sm font-medium text-red-600">{state.error.name}</p>
+                        )}
                     </div>
                     <div className="flex flex-col gap-2">
                         <label className="text-sm font-medium w-10" htmlFor="email">
@@ -49,9 +54,13 @@ export function RegisterForm() {
                         <Input
                             id="email"
                             type="email"
+                            name="email"
                             placeholder="Digite seu email"
-                            onChange={(e) => setEmail(e.target.value)}
+                            defaultValue={state?.email?.toString()}
                         />
+                        {state.error?.email && (
+                            <p className="text-sm font-medium text-red-600">{state.error.email}</p>
+                        )}
                     </div>
                     <div className="flex flex-col gap-2">
                         <label className="text-sm font-medium w-16" htmlFor="password">
@@ -60,15 +69,20 @@ export function RegisterForm() {
                         <Input
                             id="password"
                             type="password"
+                            name="password"
                             placeholder="Digite sua senha"
-                            onChange={(e) => setPassword(e.target.value)}
+                            defaultValue={state?.password?.toString()}
                         />
+                        {state.error?.password && (
+                            <p className="text-sm font-medium text-red-600">{state.error.password}</p>
+                        )}
                     </div>
                     <Button
                         className="w-full cursor-pointer disabled:disabled:opacity-40"
                         type="submit"
+                        disabled={isLoading}
                     >
-                        Cadastrar
+                        {isLoading ? <LoaderCircle size={16} className="animate-spin" /> : 'Entrar'}
                     </Button>
                 </form>
             </CardContent>

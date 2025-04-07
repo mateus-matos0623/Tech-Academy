@@ -2,9 +2,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LoginForm } from "./_sub/login";
 import { RegisterForm } from "./_sub/register";
 
-export default function Auth() {
+export default function Account() {
     return (
-        <div className="flex justify-center items-center min-h-[80vh] mx-auto h-screen">
+        <div className="flex justify-center mt-32">
             <Tabs defaultValue="login" className="md:w-[400px] w-96">
                 <TabsList className="grid w-full grid-cols-2 h-10">
                     <TabsTrigger value="login" className="cursor-pointer">
