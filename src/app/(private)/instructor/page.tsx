@@ -1,9 +1,8 @@
 import Link from "next/link"
-import { BarChart3, BookOpen, DollarSign, UsersRound, TrendingUp, ListPlus } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { getInstructorCourses, mockInstructor } from "@/utils/data-instructor"
+import { BookOpen, DollarSign, UsersRound, TrendingUp, ListPlus } from "lucide-react"
 
 export default function InstructorDashboard() {
     const instructorCourses = getInstructorCourses(mockInstructor.id)
