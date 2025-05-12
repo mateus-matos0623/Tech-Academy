@@ -1,6 +1,6 @@
+import LoginForm from "./_components/login";
+import RegisterForm from "./_components/register";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LoginForm } from "./_sub/login";
-import { RegisterForm } from "./_sub/register";
 
 export default function Account() {
     return (

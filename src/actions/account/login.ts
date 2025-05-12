@@ -1,20 +1,28 @@
 'use server'
 
+import { redirect } from "next/navigation";
 import { loginSchema } from "@/schemas/account/login"
+import { createClient } from "@/utils/supabase/server"
 
-export async function loginAction(previousState: object, formData: FormData) {
-    const email = formData.get('email')
-    const password = formData.get('password')
+export async function handleLogin(formData: FormData) {
+    const { email, password } = Object.fromEntries(formData.entries());
 
-    const { success, error } = loginSchema.safeParse({ email, password })
+    const { success, error: invalid } = loginSchema.safeParse({ email, password })
     if (!success) {
-        return {
-            email,
-            password,
-            errors: error.flatten().fieldErrors,
-        };
+        console.log('ERROR', invalid.errors[0].message)
+        return { success: false, message: invalid.errors[0].message };
     }
 
-    return { email, password }
+    const supabase = await createClient();
+    const { error } = await supabase.auth.signInWithPassword({
+        email: email.toString(),
+        password: password.toString(),
+    });
+
+    if (error) {
+        return { success: true, message: 'Credenciais inválidas' };
+    }
+
+    redirect('/dashboard')
 
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { registerAction } from "@/actions/account/register";
+import { handleRegister } from "@/actions/account/register";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -10,19 +10,31 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useMutation } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
-import { useActionState } from "react";
+import { FormEvent } from "react";
+import { toast } from "sonner";
 
-export function RegisterForm() {
+export default function RegisterForm() {
 
-    const initialState = {
-        message: '',
-        name: '',
-        email: '',
-        password: ''
+    const mutation = useMutation({
+        mutationFn: async (formData: FormData) => {
+            return await handleRegister(formData)
+        },
+        onSuccess: (response) => {
+            toast.success(response.message)
+        },
+        onError: (error) => {
+            toast.error(error.message)
+        }
+    })
+
+    async function handleSubmitRegister(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        const formData = new FormData(e.currentTarget)
+        mutation.mutate(formData)
     }
-
-    const [state, action, isLoading] = useActionState(registerAction, initialState)
 
     return (
         <Card>
@@ -31,58 +43,49 @@ export function RegisterForm() {
                 <CardDescription>Insira suas informações</CardDescription>
             </CardHeader>
             <CardContent>
-                <form className="space-y-6" action={action}>
+                <form className="space-y-6" onSubmit={handleSubmitRegister}>
                     <div className="flex flex-col gap-2">
-                        <label className="text-sm font-medium w-10" htmlFor="name">
+                        <Label htmlFor="name">
                             Nome
-                        </label>
+                        </Label>
                         <Input
                             id="name"
                             type="text"
                             name="name"
                             placeholder="Digite seu nome completo"
-                            defaultValue={state?.name?.toString()}
                         />
-                        {state.error?.name && (
-                            <p className="text-sm font-medium text-red-600">{state.error.name}</p>
-                        )}
+
                     </div>
                     <div className="flex flex-col gap-2">
-                        <label className="text-sm font-medium w-10" htmlFor="email">
+                        <Label htmlFor="email">
                             Email
-                        </label>
+                        </Label>
                         <Input
                             id="email"
                             type="email"
                             name="email"
                             placeholder="Digite seu email"
-                            defaultValue={state?.email?.toString()}
                         />
-                        {state.error?.email && (
-                            <p className="text-sm font-medium text-red-600">{state.error.email}</p>
-                        )}
+
                     </div>
                     <div className="flex flex-col gap-2">
-                        <label className="text-sm font-medium w-16" htmlFor="password">
+                        <Label htmlFor="password">
                             Senha
-                        </label>
+                        </Label>
                         <Input
                             id="password"
                             type="password"
                             name="password"
                             placeholder="Digite sua senha"
-                            defaultValue={state?.password?.toString()}
                         />
-                        {state.error?.password && (
-                            <p className="text-sm font-medium text-red-600">{state.error.password}</p>
-                        )}
+
                     </div>
                     <Button
                         className="w-full cursor-pointer disabled:disabled:opacity-40"
                         type="submit"
-                        disabled={isLoading}
+                        disabled={mutation.isPending}
                     >
-                        {isLoading ? <LoaderCircle size={16} className="animate-spin" /> : 'Entrar'}
+                        {mutation.isPending ? <LoaderCircle size={16} className="animate-spin" /> : 'Entrar'}
                     </Button>
                 </form>
             </CardContent>
