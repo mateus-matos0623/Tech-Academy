@@ -18,6 +18,7 @@ export async function registerStudent(email: string, password: string, name: str
       data: {
         name,
       },
+      emailRedirectTo: 'https://techacademyhub.vercel.app/login'
     },
   });
   if (error) {
