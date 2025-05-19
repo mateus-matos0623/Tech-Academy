@@ -10,7 +10,6 @@ export async function login(email: string, password: string) {
 }
 
 export async function registerStudent(email: string, password: string, name: string) {
-  const baseUrl = `${process.env.BASE_URL}/login`;
   const supabase = await createClient()
   const { error } = await supabase.auth.signUp({
     email,
@@ -19,7 +18,6 @@ export async function registerStudent(email: string, password: string, name: str
       data: {
         name,
       },
-      emailRedirectTo: baseUrl
     },
   });
   if (error) {
