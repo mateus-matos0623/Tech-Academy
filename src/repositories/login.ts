@@ -10,8 +10,7 @@ export async function login(email: string, password: string) {
 }
 
 export async function registerStudent(email: string, password: string, name: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
-  console.log('baseUrl:', baseUrl)
+  const baseUrl = `${process.env.BASE_URL}/login`;
   const supabase = await createClient()
   const { error } = await supabase.auth.signUp({
     email,

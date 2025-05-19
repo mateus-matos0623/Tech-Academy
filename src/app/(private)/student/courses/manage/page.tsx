@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 export default async function AcquiredCourses() {
   const cookieHeader = (await cookies()).toString();
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
+  const baseUrl = process.env.BASE_URL;
   const response = await fetch(`${baseUrl}/api/student/acquired`, {
     method: "GET",
     cache: "force-cache",
