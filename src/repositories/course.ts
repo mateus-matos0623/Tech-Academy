@@ -50,7 +50,7 @@ export async function updateCourse(course: Course) {
     console.log("erro ao atualizar curso:", error);
     return { success: false, message: "Erro ao atualizar curso" };
   }
-  return { success: true, message: "Curso criado com successo" };
+  return { success: true, message: "Curso atualizado com successo" };
 }
 
 export async function deleteCourse(courseId: string, instructorId: string) {

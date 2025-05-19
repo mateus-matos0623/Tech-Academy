@@ -7,18 +7,12 @@ import {
 } from "@/components/ui/sidebar";
 import {
   GraduationCap,
-  LayoutDashboard,
   ListPlus,
 } from "lucide-react";
 import Link from "next/link";
 
 export default function StudentNavigation() {
   const items = [
-    {
-      title: "Dashboard",
-      url: "/student",
-      icon: LayoutDashboard,
-    },
     {
       title: "Meus cursos",
       url: "/student/courses/manage",

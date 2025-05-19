@@ -11,6 +11,7 @@ export async function login(email: string, password: string) {
 
 export async function registerStudent(email: string, password: string, name: string) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
+  console.log('baseUrl:', baseUrl)
   const supabase = await createClient()
   const { error } = await supabase.auth.signUp({
     email,
@@ -19,11 +20,10 @@ export async function registerStudent(email: string, password: string, name: str
       data: {
         name,
       },
-      emailRedirectTo: baseUrl
+      emailRedirectTo: baseUrl + "/login"
     },
   });
   if (error) {
-    console.log('error:', error)
     return { success: false, message: 'Erro ao se cadastrar' }
   }
   return { success: true, message: "Cadastro realizado! Verifique seu e-mail para confirmar sua conta." };

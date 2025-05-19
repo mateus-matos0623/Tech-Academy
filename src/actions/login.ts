@@ -25,9 +25,9 @@ export async function handleLogin(formData: FormData) {
   }
 
   if (credentials.role === 'instructor') {
-    redirect('/instructor');
+    redirect('/instructor/courses/manage');
   } else {
-    redirect('/student');
+    redirect('/student/courses/manage');
   }
 }
 
