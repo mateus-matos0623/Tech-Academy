@@ -19,7 +19,7 @@ export async function registerStudent(email: string, password: string, name: str
       data: {
         name,
       },
-      emailRedirectTo: baseUrl + "/login"
+      emailRedirectTo: baseUrl
     },
   });
   if (error) {
