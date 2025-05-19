@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
-import Header from "@/components/header/main";
 import ReactQueryProvider from "../react-query-provider";
+import Header from "@/components/header/main";
 
 const geist = Geist({
   subsets: ["latin"],
