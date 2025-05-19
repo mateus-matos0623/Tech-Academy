@@ -9,7 +9,6 @@ import {
   GraduationCap,
   LayoutDashboard,
   ListPlus,
-  LogOut,
 } from "lucide-react";
 import Link from "next/link";
 

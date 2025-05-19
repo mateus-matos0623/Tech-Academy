@@ -28,11 +28,12 @@ interface ITableCoursesProps {
 type TableStationDialogState = { type: "delete"; courseId: string } | null;
 
 export default function TableCourses({ courses }: ITableCoursesProps) {
+  const [dialog, setDialog] = useState<TableStationDialogState>(null);
+  
   if (courses.length === 0) {
     return <p className="text-center font-medium">Nenhum curso cadastrado</p>;
   }
 
-  const [dialog, setDialog] = useState<TableStationDialogState>(null);
   const closeDialog = () => setDialog(null);
 
   return (
