@@ -10,15 +10,16 @@ export async function login(email: string, password: string) {
 }
 
 export async function registerStudent(email: string, password: string, name: string) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
   const supabase = await createClient()
   const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
-        name, // campo extra
+        name,
       },
-      emailRedirectTo: 'http://localhost:3000/login' // ou qualquer URL sua
+      emailRedirectTo: baseUrl
     },
   });
   if (error) {
