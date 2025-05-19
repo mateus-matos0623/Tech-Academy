@@ -1,15 +1,12 @@
-export interface CourseType {
+export type Course = {
     id: string;
     title: string;
     description: string;
-    instructor: string;
-    instructorId: string;
-    price: number;
-    imageUrl: string;
-    categories: string[];
-    level: 'Beginner' | 'Intermediate' | 'Advanced';
     duration: string;
-    enrolledStudents: number;
-    rating: number;
-    createdAt: string;
-}
+    price: number;
+    level: string;
+    category: string;
+    image: string;
+    created_at: string;
+    instructor_id: string
+  };

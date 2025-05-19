@@ -1,20 +1,22 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { BookOpen, GraduationCap, Home, User, UserCog } from "lucide-react";
-import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "../ui/navigation-menu";
+import {
+    NavigationMenu,
+    NavigationMenuItem,
+    NavigationMenuList,
+} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
+import { BookOpen, GraduationCap, Home, User } from "lucide-react";
 
 interface INavigationProps {
     isMobile?: boolean;
 }
 
 export default function Navigation({ isMobile }: INavigationProps) {
-
     const navigationItems = [
-        { id: 1, path: "/home", label: "Home", icon: Home },
-        { id: 2, path: "/home/courses", label: "Cursos", icon: BookOpen },
-        { id: 3, path: "/home/blog", label: "Blog", icon: GraduationCap },
-        { id: 4, path: "/home/account/student", label: "Estudante", icon: User },
-        { id: 5, path: "/home/account/instructor", label: "Instrutor", icon: UserCog },
+        { id: 1, path: "/", label: "Home", icon: Home },
+        { id: 2, path: "/courses", label: "Cursos", icon: BookOpen },
+        { id: 3, path: "/blog", label: "Blog", icon: GraduationCap },
+        { id: 4, path: "/login", label: "Entrar", icon: User },
     ] as const;
 
     if (isMobile) {
@@ -25,10 +27,7 @@ export default function Navigation({ isMobile }: INavigationProps) {
                         {navigationItems.map(({ id, path, label, icon: Icon }) => (
                             <NavigationMenuItem key={id}>
                                 <Link href={path}>
-                                    <Button
-                                        variant="ghost"
-                                        className="w-full flex items-center"
-                                    >
+                                    <Button variant="ghost" className="w-full flex items-center">
                                         <Icon className="mr-2 h-4 w-4" />
                                         {label}
                                     </Button>
@@ -38,7 +37,7 @@ export default function Navigation({ isMobile }: INavigationProps) {
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
-        )
+        );
     }
 
     return (
@@ -56,5 +55,5 @@ export default function Navigation({ isMobile }: INavigationProps) {
                 ))}
             </NavigationMenuList>
         </NavigationMenu>
-    )
+    );
 }

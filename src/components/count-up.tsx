@@ -7,5 +7,5 @@ interface CountUpProps {
 }
 
 export function CountUP({ end }: CountUpProps) {
-    return <CountUp end={end} />
+    return <CountUp end={end} separator="." />
 }
