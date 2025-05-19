@@ -46,7 +46,7 @@ export default function CourseForm({ course }: ICourseFormProps) {
   const titleMessage = isEditMode ? "Editar curso" : "Criar curso";
 
   return (
-    <div className="w-full max-w-5xl mx-auto md:px-8 mb-6">
+    <div className="w-full max-w-5xl mx-auto md:px-8 mb-6 p-6">
       <h1 className="text-2xl font-bold mb-4">{titleMessage}</h1>
 
       <form className="space-y-4" onSubmit={handleSubmitCourse}>
